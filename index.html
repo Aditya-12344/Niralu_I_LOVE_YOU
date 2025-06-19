@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fashion Category Uploader</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .category { margin-bottom: 20px; border: 1px solid #ccc; padding: 10px; }
+    .images { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+    img { height: 100px; border: 1px solid #000; }
+    .popup {
+      display: none; position: fixed; top: 50%; left: 50%;
+      transform: translate(-50%, -50%); padding: 20px;
+      background: white; border: 2px solid black; z-index: 10;
+    }
+    #overlay {
+      position: fixed; top: 0; left: 0; width: 100%;
+      height: 100%; background: rgba(0,0,0,0.5); display: none;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Upload Your Favorite Clothes</h1>
+
+<div id="categories"></div>
+
+<button onclick="showRandomImage()">Show Random Outfit</button>
+
+<div id="overlay" onclick="closePopup()"></div>
+<div class="popup" id="popup">
+  <h3>Selected Image</h3>
+  <img id="popup-img" src="" alt="Random Image">
+</div>
+
+<script>
+const categoryNames = [
+  "Party Wear",
+  "Normal Wear",
+  "Night Wear",
+  "Traditional Wear",
+  "The Clothes You Love"
+];
+
+const allImages = [];
+
+function createCategory(name) {
+  const container = document.createElement('div');
+  container.className = 'category';
+
+  const label = document.createElement('h2');
+  label.innerText = name;
+  container.appendChild(label);
+
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.multiple = true;
+
+  input.addEventListener('change', function(event) {
+    const imageContainer = container.querySelector('.images');
+    for (let file of event.target.files) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        imageContainer.appendChild(img);
+        allImages.push(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  container.appendChild(input);
+
+  const imageContainer = document.createElement('div');
+  imageContainer.className = 'images';
+  container.appendChild(imageContainer);
+
+  document.getElementById('categories').appendChild(container);
+}
+
+categoryNames.forEach(createCategory);
+
+function showRandomImage() {
+  if (allImages.length === 0) {
+    alert("No images uploaded!");
+    return;
+  }
+  const randomImg = allImages[Math.floor(Math.random() * allImages.length)];
+  document.getElementById('popup-img').src = randomImg;
+  document.getElementById('popup').style.display = 'block';
+  document.getElementById('overlay').style.display = 'block';
+}
+
+function closePopup() {
+  document.getElementById('popup').style.display = 'none';
+  document.getElementById('overlay').style.display = 'none';
+}
+</script>
+
+</body>
+</html>
