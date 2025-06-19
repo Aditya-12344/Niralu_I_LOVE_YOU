@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Aditya's Heart</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #ffc0cb, #ffe6f0);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .heart-container {
+      position: relative;
+      width: 200px;
+      height: 180px;
+      animation: openHeart 2s ease-in-out forwards;
+      margin-bottom: 40px;
+    }
+
+    .heart {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100px;
+      height: 160px;
+      background: #ff4d6d;
+      border-radius: 100px 100px 0 0;
+      transform: rotate(-45deg);
+      transform-origin: right bottom;
+      box-shadow: 0 0 20px rgba(255, 105, 135, 0.5);
+    }
+
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 160px;
+      background: #ff4d6d;
+      border-radius: 100px 100px 0 0;
+      transform: rotate(90deg);
+      transform-origin: left bottom;
+      left: 100px;
+    }
+
+    .heart-text {
+      position: absolute;
+      top: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      text-align: center;
+      color: white;
+      font-size: 1.1em;
+      font-weight: bold;
+      z-index: 2;
+    }
+
+    @keyframes openHeart {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .options button {
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      background-color: #ff69b4;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .options button:hover {
+      background-color: #ff1493;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="heart-container">
+    <div class="heart"></div>
+    <div class="heart-text">This is my heart to help you</div>
+  </div>
+
+  <div class="options">
+    <button onclick="location.href='reassurance.html'">Do you need Reassurance</button>
+    <button onclick="location.href='voice.html'">Do You need To listen his Voice</button>
+    <button onclick="location.href='smile.html'">Do you want to see His Smiling Face</button>
+    <button onclick="location.href='hit.html'">Do You want to hit him</button>
+    <button onclick="location.href='kiss.html'">Do you want to kiss him</button>
+    <button onclick="location.href='dress.html'">Do you want to decide what to wear</button>
+  </div>
+
+</body>
+</html>
