@@ -1,26 +1,39 @@
-
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>I Love You Nirali</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fff0f5;
+      height: 100vh;
+      background: linear-gradient(to bottom, #ffb6c1, #ffe6f0);
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
-    h1, h2 {
-      text-align: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+      position: relative;
       color: #c71585;
+      text-align: center;
     }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1.5em;
+      margin-bottom: 30px;
+    }
+
     button {
-      margin-top: 20px;
       padding: 12px 24px;
       font-size: 16px;
       background-color: #ff69b4;
@@ -29,20 +42,63 @@
       border-radius: 10px;
       cursor: pointer;
       transition: background 0.3s ease;
+      z-index: 2;
     }
+
     button:hover {
       background-color: #ff1493;
+    }
+
+    /* Stars */
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      width: 2px;
+      height: 2px;
+      animation: twinkle 2s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    /* Moon */
+    .moon {
+      position: absolute;
+      top: 50px;
+      right: 80px;
+      width: 80px;
+      height: 80px;
+      background: #fefcd7;
+      border-radius: 50%;
+      box-shadow: 0 0 30px #fefcd7;
     }
   </style>
 </head>
 <body>
 
+  <!-- Moon -->
+  <div class="moon"></div>
+
+  <!-- Stars -->
+  <script>
+    for (let i = 0; i < 100; i++) {
+      let star = document.createElement('div');
+      star.className = 'star';
+      star.style.top = Math.random() * 100 + 'vh';
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.animationDelay = Math.random() * 2 + 's';
+      star.style.width = star.style.height = Math.random() * 2 + 1 + 'px';
+      document.body.appendChild(star);
+    }
+  </script>
+
+  <!-- Message and Button -->
   <h1>I Love You Nirali</h1>
   <h2>You are Aditya Bhadouria's Sweet Basan ka Ladoooo</h2>
-
-  <button onclick="location.href='page2.html'">
-    Please see forward in Aditya's Heart
-  </button>
+  <button onclick="location.href='page2.html'">Please see forward in Aditya's Heart</button>
 
 </body>
 </html>
